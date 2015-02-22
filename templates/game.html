@@ -1,0 +1,34 @@
+{% include 'header.html' %}
+
+<table width="60%" align="center">
+    <tr>
+        <td>
+            <table class="CSSForm">
+                <tr>
+                    <td>
+                        <h1>{{ word }}</h1>
+                        <p><h5>{{ rule }} '{{ word }}'.<br /> {{ note }}.</h5></p>
+                    </td>
+                </tr>
+                <tr align="center">
+                    <td>
+                        <form method="post" action="{{ action }}">
+                            {% for answer in answers %}
+                                Answer {{ answer }}:<input name="answer" type="text" maxlength="255" value=""/>
+                                <br />
+                            {% endfor %}
+                            <input type="submit" value="Submit"/>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+<table align="center">
+    <tr>
+        <td><input type="button" value="Top 10" onclick="window.location = '{{ url_for('show_top10') }}';"/></td>
+    </tr>
+</table>
+{% include 'footer.html' %}

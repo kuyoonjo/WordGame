@@ -1,0 +1,46 @@
+{% include 'header.html' %}
+<table width="60%" align="center">
+    <tr>
+        <td>
+            <table class="CSSTable">
+                <tr>
+                    <td width="15%">Rank</td>
+                    <td width="35%">Name</td>
+                    <td>Time</td>
+                </tr>
+                {% set count = 1 %}
+                {% for score in top10 %}
+                    <tr>
+                        <td>{{ count }}</td>
+                        <td>{{ score.player }}</td>
+                        <td>{{ '%.3f' % score.time }}</td>
+                    </tr>
+                    {% set count = count + 1 %}
+                {% endfor %}
+            </table>
+
+        </td>
+    </tr>
+</table>
+<table width="60%" align="center">
+    <tr>
+        <td>
+            <table class="CSSFrame">
+                <tr><td></td></tr>
+                <tr>
+                    <td>
+                        Nice try, {{ player }}: You were ranked {{ rank }}. Best luck next time.
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<table align="center">
+    <tr>
+        <td><input type="button" value="Start new Game" onclick="window.location = '{{ url_for('start') }}';"/></td>
+    </tr>
+</table>
+
+
+{% include 'footer.html' %}

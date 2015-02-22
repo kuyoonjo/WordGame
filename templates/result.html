@@ -1,0 +1,69 @@
+{% include 'header.html' %}
+<table width="60%" align="center">
+    <tr>
+        <td>
+            <table class="CSSForm">
+                <tr>
+                    <td>
+                        <h1>{{ word }}</h1>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<table width="60%" align="center">
+    <tr>
+        <td>
+            <table class="CSSTable">
+                <tr>
+                    <td width="50%">Answer</td>
+                    <td>Result</td>
+                </tr>
+                {% for result in results %}
+                    <tr>
+                        <td>{{ result['answer'] }}</td>
+                        <td>
+                            {% if result['result'] == "in dict" %}
+                                <img alt="Correct" src="{{ url_for('static', filename='correct.png') }}"/>
+                            {% else %}
+                                {{ result['result'] }}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </td>
+    </tr>
+</table>
+
+{% if success %}
+    <form action="{{ action }}" method="post">
+    <table width="60%" align="center">
+    <tr>
+        <td>
+            <table class="CSSFrame">
+                <tr><td></td></tr>
+                <tr>
+                    <td>
+                        <p><h4>Time taken: {{ '%.3f' % time }}</h4></p>
+                        <p>Input your name to rank. Leave it blank will rank as Anonymous.</p>
+                        <p>
+                            Name: <input type="text" name="player"/>
+                            <input type="submit" value="Rank"/>
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    </table>
+    </form>
+{% endif %}
+<table align="center">
+    <tr>
+        <td><input type="button" value="Start new Game" onclick="window.location = '{{ url_for('start') }}';"/></td>
+    </tr>
+</table>
+
+{% include 'footer.html' %}
